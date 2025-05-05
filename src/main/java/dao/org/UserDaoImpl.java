@@ -25,7 +25,7 @@ public class UserDaoImpl implements UserDao{
 			
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
-			System.out.println("Query executed successfully");
+			
 			return resultSet.next();			
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -40,8 +40,28 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public boolean addUser(User user) {
-		// TODO Auto-generated method stub
-		return false;
+		String query = "INSERT INTO users (name, email, contact, password) VALUES (?, ?, ?, ?);";
+		
+		try (Connection connection = DBUtil.getConnection()) {
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			
+			preparedStatement.setString(1, user.getName());
+			preparedStatement.setString(2, user.getEmail());
+			preparedStatement.setString(3, user.getContact());
+			preparedStatement.setString(4, user.getPassword());
+			
+			int rowsInserted = preparedStatement.executeUpdate();
+			
+			System.out.println("query is executing");
+			
+			return rowsInserted > 0;
+			
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
 	}
 
 }

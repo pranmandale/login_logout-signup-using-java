@@ -107,6 +107,18 @@
         <button type="submit">Register</button>
         
         <p>Already have an account? <a href="login.jsp">login</a> </p>
+        
+        
+        <% 
+   			String error = request.getParameter("error");
+   				if(error != null && error.equals("1")) { 
+			%>
+   			<p style="color: red;">Error during registration</p>
+			<% 
+   			} 
+			%>
     </form>
+    
+    
 </body>
 </html>

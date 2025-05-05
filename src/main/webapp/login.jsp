@@ -97,6 +97,8 @@
         
        <p>Don't have an account? <a href="register.jsp">Register</a> </p>
        
+       
+       <%--display error message if login fails --%>
     		 <% 
    			String error = request.getParameter("error");
    				if(error != null && error.equals("1")) { 
@@ -105,6 +107,18 @@
 			<% 
    			} 
 			%>
+			
+			<%-- display a message if registration successful --%>
+				
+				 <% 
+   			String rs = request.getParameter("registration");
+   				if(rs != null && rs.equals("successful")) { 
+			%>
+   			<p style="color: green;">Registration Successful Please login</p>
+			<% 
+   			} 
+			%>
+			
 
     </form>
 </body>

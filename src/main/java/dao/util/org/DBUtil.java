@@ -23,7 +23,6 @@ public class DBUtil {
 	
 
 	public static Connection getConnection() throws SQLException {
-		System.out.println("connection will be successful");
 		return DriverManager.getConnection(url+db, userName, password);
 	}
 
